@@ -4,6 +4,7 @@ project(
     VERSION 0.1
     LANGUAGES C CXX
 )
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 option(FORCE_COLORED_OUTPUT "Always produce ANSI-colored output." ON)
 if(FORCE_COLORED_OUTPUT)
@@ -26,5 +27,3 @@ include(CompilerSettings)
 
 add_subdirectory(src/VALfiles)
 add_subdirectory(src/optic)
-
-
