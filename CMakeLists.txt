@@ -21,9 +21,8 @@ set(CMAKE_MODULE_PATH
     "${CMAKE_CURRENT_SOURCE_DIR}/cmake"
 )
 
-set(DOXYFILE_IN ${CMAKE_CURRENT_SOURCE_DIR}/src/Doxyfile.in)
-
 include(CompilerSettings)
 
+set(val_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src/VALfiles)
 add_subdirectory(src/VALfiles)
 add_subdirectory(src/optic)

@@ -5,7 +5,7 @@ find_package(Cgl)
 find_package(OSI)
 find_package(GSL)
 
-include_directories(${val_SOURCE_DIR} ${val_SOURCE_DIR}/parsing ${val_BINARY_DIR} ${CLP_INCLUDES}/coin ${CBC_INCLUDES}/coin ${CPLEX_INCLUDES} ${CONCERT_INCLUDES}  ${GSL_INCLUDES})
+include_directories(${val_SOURCE_DIR} ${val_SOURCE_DIR}/parsing ${CLP_INCLUDES}/coin ${CBC_INCLUDES}/coin ${CPLEX_INCLUDES} ${CONCERT_INCLUDES}  ${GSL_INCLUDES})
 
 set(optic_build_srcs
     compressionsafescheduler.cpp
@@ -35,7 +35,6 @@ SET_TARGET_PROPERTIES(OpticCommon PROPERTIES COMPILE_FLAGS "-DPOPF3ANALYSIS")
 if (CLP_INCLUDES AND CBC_INCLUDES)
 
     ADD_EXECUTABLE(optic-clp opticMain.cpp solver-clp.cpp)
-    
     target_link_libraries(optic-clp
         OpticCommon
         ${CBC_SOLVER_LIBRARY} ${CBC_LIBRARY} ${CGL_LIBRARIES} ${OSICLP_LIBRARIES} ${OSI_LIBRARIES} ${CLP_LIBRARIES}  ${COINUTILS_LIBRARIES} -lz -lbz2
@@ -47,12 +46,10 @@ endif(CLP_INCLUDES AND CBC_INCLUDES)
 if(CPLEX AND ILOCPLEX AND CONCERT AND CPLEX_INCLUDES AND CONCERT_INCLUDES)
 
     ADD_EXECUTABLE(optic-cplex opticMain.cpp solver-cpx.cpp)
-    
-    target_link_libraries(optic-cplex    
+    target_link_libraries(optic-cplex
             OpticCommon
             ${ILOCPLEX} ${CPLEX} ${CONCERT} pthread
     )
     SET_TARGET_PROPERTIES(optic-cplex PROPERTIES COMPILE_FLAGS "-DPOPF3ANALYSIS")
-    
-endif(CPLEX AND ILOCPLEX AND CONCERT AND CPLEX_INCLUDES AND CONCERT_INCLUDES)
 
+endif(CPLEX AND ILOCPLEX AND CONCERT AND CPLEX_INCLUDES AND CONCERT_INCLUDES)
